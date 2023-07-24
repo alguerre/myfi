@@ -2,7 +2,7 @@ from typing import List
 
 import pandas as pd
 
-from repositories import CategoriesRepository, FinancesRepository, SavingsRepository
+from repositories import CategoriesRepository, FinancesRepository
 
 
 class DataService:
@@ -10,10 +10,7 @@ class DataService:
         self,
         repo_categories: CategoriesRepository,
         repo_finances: FinancesRepository,
-        repo_savings: SavingsRepository,
     ):
-        self.savings = repo_savings.get_all()
-
         self.data = pd.merge(
             left=repo_categories.get_all(),
             right=repo_finances.get_all(),
@@ -22,9 +19,7 @@ class DataService:
             right_on="category_id",
             suffixes=("_categories", "_finances"),
         )
-        # Create column with savings and convert its amount to 0
-        # self.data = self.data.rename({"id": "savings_id"}, axis=1)  # identify savings rows
-        # self.data["savings"] = self.data["savings_id"].notna()
+        # Convert savings amount to 0
         self.data.loc[self.data["category"] == "SAVINGS", "amount"] = 0
 
         # Update total column in proper order and including savings

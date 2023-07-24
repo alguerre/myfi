@@ -8,15 +8,12 @@ from sqlalchemy.orm import Session
 
 from src.deps import engine
 from src.gui import DataService
-from src.gui.painter import (
-    CategoricalExpensesAnalysisPainter,
-    CategoricalExpensesEvolutionPainter,
-    SavingsEvolutionPainter,
-    YearlySalaryPainter,
-    YearlySavingsPainter,
-)
+from src.gui.painter import (CategoricalExpensesAnalysisPainter,
+                             CategoricalExpensesEvolutionPainter,
+                             SavingsEvolutionPainter, YearlySalaryPainter,
+                             YearlySavingsPainter)
 from src.gui.painter.abc import Painter
-from src.repositories import CategoriesRepository, FinancesRepository, SavingsRepository
+from src.repositories import CategoriesRepository, FinancesRepository
 
 plt.rcParams["font.family"] = "calibri"
 
@@ -123,7 +120,6 @@ if __name__ == "__main__":
         repositories_ = {
             "repo_categories": CategoriesRepository(session),
             "repo_finances": FinancesRepository(session),
-            "repo_savings": SavingsRepository(session),
         }
 
         data_service_ = DataService(**repositories_)

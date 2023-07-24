@@ -1,4 +1,5 @@
-from sqlalchemy import Boolean, Column, Date, DateTime, ForeignKey, Integer, Text
+from sqlalchemy import (Boolean, Column, Date, DateTime, ForeignKey, Integer,
+                        Text)
 from sqlalchemy.sql import func
 from sqlalchemy.types import DECIMAL
 
