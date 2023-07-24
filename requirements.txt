@@ -1,0 +1,17 @@
+# Cli framework
+click==8.1.5
+
+# Data
+pandas==2.0.3
+xlrd==2.0.1
+
+# Database
+psycopg2==2.9.6
+sqlalchemy==2.0.19
+
+# GUI
+matplotlib==3.7.2
+streamlit==1.25.0
+
+# Utils
+pyyaml==6.0

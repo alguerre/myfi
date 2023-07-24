@@ -1,0 +1,5 @@
+from .categorical_expenses_analysis import CategoricalExpensesAnalysisPainter
+from .categorical_expenses_evolution import CategoricalExpensesEvolutionPainter
+from .savings_evolution import SavingsEvolutionPainter
+from .yearly_salary import YearlySalaryPainter
+from .yearly_savings import YearlySavingsPainter
