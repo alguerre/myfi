@@ -1,10 +1,10 @@
 from matplotlib import pyplot as plt
 from matplotlib.colors import to_hex
 
-from src.gui.painter.abc import Painter
+from src.gui.painter.base import BasePainter
 
 
-class CategoricalExpensesAnalysisPainter(Painter):
+class CategoricalExpensesAnalysisBasePainter(BasePainter):
     def paint(self, **kwargs) -> plt.Figure:
         year: int = kwargs["year"]
 

@@ -1,9 +1,9 @@
 from matplotlib import pyplot as plt
 
-from src.gui.painter.abc import Painter
+from src.gui.painter.base import BasePainter
 
 
-class CategoricalExpensesEvolutionPainter(Painter):
+class CategoricalExpensesEvolutionBasePainter(BasePainter):
     def paint(self, **kwargs) -> plt.Figure:
         category: str = kwargs["category"]
 

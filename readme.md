@@ -28,7 +28,7 @@
 - [ ] Create a painters and repo factory
   - The proper approach would be the Unit of Work pattern
   - https://itnext.io/decoupling-python-code-implementing-the-unit-of-work-and-repository-pattern-6b3257e8b167
-- [ ] Add to git
+- [x] Add to git
 - [ ] Use a set of rules for operations like
   - Exclude concepts when importing file
   - Indicate which corresponds to savings

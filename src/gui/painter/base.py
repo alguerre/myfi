@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from src.gui.service.data import DataService
 
 
-class Painter(ABC):
+class BasePainter(ABC):
     def __init__(self, data_service: DataService):
         self.data_service = data_service
         self.text_format = {

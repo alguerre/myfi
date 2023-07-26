@@ -1,16 +1,15 @@
 import click
 from sqlalchemy import Connection
-from sqlalchemy.orm import Session
 from streamlit.web import bootstrap
 
 from deps import engine
-from repositories import CategoriesRepository
-from src.jobs.add_source_data import AddSourceDataCommand
+from jobs.add_source_data import AddSourceDataCommand, AddDataService, \
+    AddDataUow
+from jobs.insert_categories import InsertCategoriesCommand, \
+    InsertCategoriesService, InsertCategoriesUow
 from src.jobs.create_tables import CreateTableCommand
-from src.jobs.insert_categories import InsertCategoriesCommand
-from src.repositories import FinancesRepository
 from src.utils.paths import GUI as GUI_PATH
-from utils.database import with_connection, with_session
+from utils.database import with_connection
 
 
 @click.group()
@@ -19,11 +18,11 @@ def cli():
 
 
 @cli.command()
-@with_session(engine)
 @click.argument("file", type=str)
-def add_source_data(session: Session, file: str):
-    repository = FinancesRepository(session)
-    AddSourceDataCommand(repository, file).execute()
+def add_source_data(file: str):
+    uow = AddDataUow()
+    service = AddDataService(uow)
+    AddSourceDataCommand(service, file).execute()
 
 
 @cli.command()
@@ -33,11 +32,10 @@ def create_tables(connection: Connection):
 
 
 @cli.command()
-@with_session(engine)
-def insert_categories(session: Session):
-    repo_categories = CategoriesRepository(session)
-    repo_finances = FinancesRepository(session)
-    InsertCategoriesCommand(repo_categories, repo_finances).execute()
+def insert_categories():
+    uow = InsertCategoriesUow()
+    service = InsertCategoriesService(uow)
+    InsertCategoriesCommand(service).execute()
 
 
 @cli.command()

@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy.orm import Session
 
-from repositories.abc import Repository
+from repositories.base import Repository
 from src.models import Categories
 
 

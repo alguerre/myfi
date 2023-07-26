@@ -8,11 +8,11 @@ from sqlalchemy.orm import Session
 
 from src.deps import engine
 from src.gui import DataService
-from src.gui.painter import (CategoricalExpensesAnalysisPainter,
-                             CategoricalExpensesEvolutionPainter,
-                             SavingsEvolutionPainter, YearlySalaryPainter,
-                             YearlySavingsPainter)
-from src.gui.painter.abc import Painter
+from src.gui.painter import (CategoricalExpensesAnalysisBasePainter,
+                             CategoricalExpensesEvolutionBasePainter,
+                             SavingsEvolutionBasePainter, YearlySalaryBasePainter,
+                             YearlySavingsBasePainter)
+from src.gui.painter.base import BasePainter
 from src.repositories import CategoriesRepository, FinancesRepository
 
 plt.rcParams["font.family"] = "calibri"
@@ -46,7 +46,7 @@ def build_df_filters(
     return filters
 
 
-def launch_gui(data_service: DataService, painters: Dict[str, Painter]):
+def launch_gui(data_service: DataService, painters: Dict[str, BasePainter]):
     st.set_page_config(
         page_title="Finances Analysis",
         page_icon="✅",
@@ -125,15 +125,15 @@ if __name__ == "__main__":
         data_service_ = DataService(**repositories_)
 
         painters_ = {
-            "categorical_expenses_analysis": CategoricalExpensesAnalysisPainter(
+            "categorical_expenses_analysis": CategoricalExpensesAnalysisBasePainter(
                 data_service_
             ),
-            "categorical_expenses_evolution": CategoricalExpensesEvolutionPainter(
+            "categorical_expenses_evolution": CategoricalExpensesEvolutionBasePainter(
                 data_service_
             ),
-            "salary_evolution": YearlySalaryPainter(data_service_),
-            "savings_evolution": SavingsEvolutionPainter(data_service_),
-            "yearly_savings": YearlySavingsPainter(data_service_),
+            "salary_evolution": YearlySalaryBasePainter(data_service_),
+            "savings_evolution": SavingsEvolutionBasePainter(data_service_),
+            "yearly_savings": YearlySavingsBasePainter(data_service_),
         }
 
         launch_gui(data_service_, painters_)

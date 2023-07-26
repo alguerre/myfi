@@ -1,7 +1,7 @@
 from sqlalchemy.engine.base import Connection
 
 from src.models import TABLES
-from src.utils.command import Command
+from base.command import Command
 from src.utils.database import Base
 
 
