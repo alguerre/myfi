@@ -14,7 +14,7 @@ class InsertCategoriesService(BaseService):
         with self.uow:
             if result := self.uow.repo_categories.get_by_name(category):
                 return result.id
-    
+
             return self.uow.repo_categories.add(category)
 
     def _set_category(self, category_id: int, keywords: List[str]) -> int:

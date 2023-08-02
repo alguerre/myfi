@@ -16,6 +16,7 @@ class Finances(Base):
     total = Column(DECIMAL(12, 2))
     category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
     automatic = Column(Boolean)
+    origin = Column(Text, nullable=False)
 
     created_on = Column(DateTime(timezone=True), server_default=func.now())
     updated_on = Column(DateTime(timezone=True), onupdate=func.now())

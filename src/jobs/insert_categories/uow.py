@@ -2,7 +2,7 @@ from sqlalchemy.orm import sessionmaker
 
 from base.uow import UnitOfWork
 from deps import engine
-from repositories import FinancesRepository, CategoriesRepository
+from repositories import CategoriesRepository, FinancesRepository
 
 
 class InsertCategoriesUow(UnitOfWork):

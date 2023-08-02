@@ -1,5 +1,5 @@
 from datetime import date
-from typing import List, Optional
+from typing import Optional
 
 import pandas as pd
 from sqlalchemy import desc, func, update
@@ -17,8 +17,13 @@ class FinancesRepository(Repository):
         self.session.bulk_insert_mappings(Finances, data.to_dict("records"))
         return len(data)
 
-    def get_last_date(self) -> Optional[date]:
-        query = self.session.query(Finances.date).order_by(desc(Finances.date)).limit(1)
+    def get_last_date(self, origin: str) -> Optional[date]:
+        query = (
+            self.session.query(Finances.date)
+            .where(Finances.origin == origin)
+            .order_by(desc(Finances.date))
+            .limit(1)
+        )
         return query.scalar()
 
     def update_category(self, word: str, category_id: int) -> int:

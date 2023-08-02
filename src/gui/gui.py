@@ -10,8 +10,8 @@ from src.deps import engine
 from src.gui import DataService
 from src.gui.painter import (CategoricalExpensesAnalysisBasePainter,
                              CategoricalExpensesEvolutionBasePainter,
-                             SavingsEvolutionBasePainter, YearlySalaryBasePainter,
-                             YearlySavingsBasePainter)
+                             SavingsEvolutionBasePainter,
+                             YearlySalaryBasePainter, YearlySavingsBasePainter)
 from src.gui.painter.base import BasePainter
 from src.repositories import CategoriesRepository, FinancesRepository
 

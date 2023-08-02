@@ -3,6 +3,7 @@ click==8.1.5
 
 # Data
 pandas==2.0.3
+pandera==0.16.1
 xlrd==2.0.1
 
 # Database
@@ -15,3 +16,6 @@ streamlit==1.25.0
 
 # Utils
 pyyaml==6.0
+
+# Tests
+pytest==7.4.0

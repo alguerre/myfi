@@ -1,8 +1,8 @@
 import pandas as pd
 
-from src.jobs.add_source_data.service import AddDataService
-from src.jobs.add_source_data.constants import EXCEL_FORMAT
 from base.command import Command
+from src.jobs.add_source_data.reader import get_reader
+from src.jobs.add_source_data.service import AddDataService
 from src.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -14,9 +14,8 @@ class AddSourceDataCommand(Command):
         self.source_file = file
 
     def read_source(self) -> pd.DataFrame:
-        data = pd.read_excel(self.source_file, **EXCEL_FORMAT)
-        data["date"] = pd.to_datetime(data["date"], format="%d/%m/%Y")
-        return data
+        reader = get_reader(self.source_file)
+        return reader.read(file=self.source_file)
 
     def execute(self) -> None:
         data = self.read_source()

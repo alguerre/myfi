@@ -12,7 +12,7 @@
 - [x] Bug in number of insertions
 - [x] Identify savings better
   - [x] foreign key to finance in savings table
-- [ ] Include other banks 
+- [x] Include other banks 
   - Create repositories
 - [ ] ~~Avoid updating twice the savings table~~ savings table is removed
 ### GUI

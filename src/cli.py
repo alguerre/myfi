@@ -3,10 +3,11 @@ from sqlalchemy import Connection
 from streamlit.web import bootstrap
 
 from deps import engine
-from jobs.add_source_data import AddSourceDataCommand, AddDataService, \
-    AddDataUow
-from jobs.insert_categories import InsertCategoriesCommand, \
-    InsertCategoriesService, InsertCategoriesUow
+from jobs.add_source_data import (AddDataService, AddDataUow,
+                                  AddSourceDataCommand)
+from jobs.insert_categories import (InsertCategoriesCommand,
+                                    InsertCategoriesService,
+                                    InsertCategoriesUow)
 from src.jobs.create_tables import CreateTableCommand
 from src.utils.paths import GUI as GUI_PATH
 from utils.database import with_connection
