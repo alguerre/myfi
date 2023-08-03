@@ -1,8 +1,8 @@
 import pandas as pd
 
 from base.command import Command
-from src.jobs.add_source_data.rules import Rules
 from src.jobs.add_source_data.reader import get_reader
+from src.jobs.add_source_data.rules import Rules
 from src.jobs.add_source_data.service import AddDataService
 from src.utils.logging import get_logger
 
@@ -24,9 +24,9 @@ class AddSourceDataCommand(Command):
 
     def execute(self) -> None:
         data = self.read_source()
-        data = self.apply_rules(data)
 
         if self.service.is_new_data(data):
+            data = self.apply_rules(data)
             insertions = self.service.add_data(data)
             logger.info(f"{insertions} new rows")
         else:

@@ -12,8 +12,11 @@ class InsertCategoriesService(BaseService):
 
     def _get_category_id(self, category: str) -> int:
         with self.uow:
-            if result := self.uow.repo_categories.get_by_name(category):
-                return result.id
+            category_id = self.uow.repo_categories.get(
+                columns=["id"], params={"category": category.upper()}
+            )
+            if not category_id.empty:
+                return category_id["id"].iloc[0]
 
             return self.uow.repo_categories.add(category)
 
@@ -22,7 +25,9 @@ class InsertCategoriesService(BaseService):
 
         with self.uow:
             for word in keywords:
-                updated_rows = self.uow.repo_finances.update_category(word, category_id)
+                updated_rows = self.uow.repo_finances.update(
+                    params={"concept": f"%{word}%"}, values={"category_id": category_id}
+                )
                 self.counter.increment(updated_rows)
             self.uow.commit()
 

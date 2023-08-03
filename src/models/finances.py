@@ -1,5 +1,4 @@
-from sqlalchemy import (Boolean, Column, Date, DateTime, ForeignKey, Integer,
-                        Text)
+from sqlalchemy import Boolean, Column, Date, DateTime, ForeignKey, Integer, Text
 from sqlalchemy.sql import func
 from sqlalchemy.types import DECIMAL
 
@@ -8,6 +7,7 @@ from src.utils.database import Base
 
 class Finances(Base):
     __tablename__ = "finances"
+    __table_args__ = {"extend_existing": True}
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     date = Column(Date, nullable=False)

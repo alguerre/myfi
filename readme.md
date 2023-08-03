@@ -8,6 +8,7 @@
 - [x] Create tables from SQLAlchemy models
 - [x] Modify raw queries for ORM
 - [ ] Migrations to avoid table regeneration -> alembic
+- [ ] Usage of two tables is not needed, categories can be included in finances
 ### Domain logic
 - [x] Bug in number of insertions
 - [x] Identify savings better
@@ -29,7 +30,7 @@
   - The proper approach would be the Unit of Work pattern
   - https://itnext.io/decoupling-python-code-implementing-the-unit-of-work-and-repository-pattern-6b3257e8b167
 - [x] Add to git
-- [ ] Use a set of rules for operations like
+- [x] Use a set of rules for operations like
   - Exclude concepts when importing file
   - Indicate which corresponds to savings
   - This way we can create a set of user configuration files containing these rules sets and avoid hardcoding.
@@ -37,4 +38,4 @@
   - These configurations could include date and concept
   - We should have db-repositories and file-repositories
 - [x] Savings table can be removed and just create new column in finances
-- [ ] Simplify repository layer, only methods get/add/update including params dict as argument
+- [x] Simplify repository layer, only methods get/add/update including params dict as argument

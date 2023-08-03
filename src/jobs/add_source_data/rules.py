@@ -1,6 +1,7 @@
 from typing import Dict, Optional
 
 import pandas as pd
+
 from utils.config import get_config
 from utils.logging import get_logger
 from utils.paths import CONFIG_RULES
