@@ -16,7 +16,7 @@ class InsertCategoriesService(BaseService):
                 columns=["id"], params={"category": category.upper()}
             )
             if not category_id.empty:
-                return category_id["id"].iloc[0]
+                return int(category_id["id"].iloc[0])  # avoid pd types
 
             return self.uow.repo_categories.add(category)
 

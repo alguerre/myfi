@@ -1,15 +1,18 @@
-from os.path import abspath, dirname, join
+from pathlib import Path
+from dataclasses import dataclass
 
-PATHS = dirname(abspath(__file__))
 
-SRC = dirname(PATHS)
-FINANCES = dirname(SRC)
+@dataclass(repr=False, frozen=True)
+class Paths:
+    this: Path = Path(__file__).resolve().parent
+    src: Path = this.parent
+    finances: Path = src.parent
+    jobs: Path = src / "jobs"
+    gui: Path = src / "gui" / "gui.py"
+    config: Path = finances / "config"
+    config_db: Path = config / "database.yml"
+    config_equivalences: Path = config / "equivalences.yml"
+    config_rules: Path = config / "rules.yml"
 
-JOBS = join(SRC, "jobs")
 
-GUI = join(SRC, "gui", "gui.py")
-
-CONFIG = join(FINANCES, "config")
-CONFIG_DB = join(CONFIG, "database.yml")
-CONFIG_EQUIVALENCES = join(CONFIG, "equivalences.yml")
-CONFIG_RULES = join(CONFIG, "rules.yml")
+paths = Paths()

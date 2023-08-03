@@ -10,7 +10,7 @@ from jobs.insert_categories import (
     InsertCategoriesUow,
 )
 from src.jobs.create_tables import CreateTableCommand
-from src.utils.paths import GUI as GUI_PATH
+from src.utils.paths import paths
 from utils.database import with_connection
 
 
@@ -42,7 +42,7 @@ def insert_categories():
 
 @cli.command()
 def launch_gui():
-    bootstrap.run(main_script_path=GUI_PATH, command_line="", args=[], flag_options={})
+    bootstrap.run(main_script_path=paths.gui, command_line="", args=[], flag_options={})
 
 
 if __name__ == "__main__":

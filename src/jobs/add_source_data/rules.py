@@ -4,14 +4,14 @@ import pandas as pd
 
 from utils.config import get_config
 from utils.logging import get_logger
-from utils.paths import CONFIG_RULES
+from utils.paths import paths
 
 logger = get_logger(__name__)
 
 
 class Rules:
     def __init__(self):
-        self._rules: Dict = get_config(CONFIG_RULES)
+        self._rules: Dict = get_config(paths.config_rules)
 
     def build_filter(self, data: pd.DataFrame, rule: Dict) -> Optional[pd.Series]:
         """from rule get a boolean series with the corresponding rule"""

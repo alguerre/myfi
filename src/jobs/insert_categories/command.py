@@ -3,7 +3,7 @@ from src.jobs.insert_categories.service import InsertCategoriesService
 from src.utils.config import get_config
 from src.utils.counter import Counter
 from src.utils.logging import get_logger
-from src.utils.paths import CONFIG_EQUIVALENCES
+from src.utils.paths import paths
 
 logger = get_logger(__name__)
 
@@ -11,7 +11,7 @@ logger = get_logger(__name__)
 class InsertCategoriesCommand(Command):
     def __init__(self, service: InsertCategoriesService) -> None:
         self.service = service
-        self.equivalences = get_config(CONFIG_EQUIVALENCES)
+        self.equivalences = get_config(paths.config_equivalences)
         self.counter = Counter(initial=0)
 
     def execute(self) -> None:
