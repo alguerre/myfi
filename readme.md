@@ -37,3 +37,4 @@
   - These configurations could include date and concept
   - We should have db-repositories and file-repositories
 - [x] Savings table can be removed and just create new column in finances
+- [ ] Simplify repository layer, only methods get/add/update including params dict as argument

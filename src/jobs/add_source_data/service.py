@@ -13,7 +13,7 @@ class AddDataService(BaseService):
             bank = data["origin"].iloc[0]
             last_date = self.uow.repo.get_last_date(bank)
 
-            if last_date:
+            if last_date:  # will be None if no data for that bank in db
                 if data["date"].min().date() <= last_date:
                     return False
             return True

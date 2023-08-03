@@ -1,6 +1,7 @@
 import pandas as pd
 
 from base.command import Command
+from src.jobs.add_source_data.rules import Rules
 from src.jobs.add_source_data.reader import get_reader
 from src.jobs.add_source_data.service import AddDataService
 from src.utils.logging import get_logger
@@ -12,13 +13,18 @@ class AddSourceDataCommand(Command):
     def __init__(self, service: AddDataService, file: str) -> None:
         self.service = service
         self.source_file = file
+        self.rules = Rules()
 
     def read_source(self) -> pd.DataFrame:
         reader = get_reader(self.source_file)
         return reader.read(file=self.source_file)
 
+    def apply_rules(self, data: pd.DataFrame) -> pd.DataFrame:
+        return self.rules.apply(data)
+
     def execute(self) -> None:
         data = self.read_source()
+        data = self.apply_rules(data)
 
         if self.service.is_new_data(data):
             insertions = self.service.add_data(data)
