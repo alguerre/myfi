@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 from src.gui.painter.base import BasePainter
 
 
-class CategoricalExpensesEvolutionBasePainter(BasePainter):
+class CategoricalExpensesEvolutionPainter(BasePainter):
     def paint(self, **kwargs) -> plt.Figure:
         category: str = kwargs["category"]
 

@@ -1,14 +1,8 @@
-from sqlalchemy.orm import sessionmaker
-
 from base.uow import UnitOfWork
-from deps import engine
 from repositories import CategoriesRepository, FinancesRepository
 
 
 class InsertCategoriesUow(UnitOfWork):
-    def __init__(self):
-        self.session_factory = sessionmaker(bind=engine)
-
     def __enter__(self):
         self.session = self.session_factory()
         self.repo_finances = FinancesRepository(self.session)

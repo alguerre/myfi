@@ -35,4 +35,4 @@ class BasePainter(ABC):
         return [self._cmap(norm(v)) for v in values]
 
     def _money_to_string(self, value: int) -> str:
-        return f"{round(value/1000.0, 1)} k€".rjust(7)
+        return f"{round(value / 1000.0, 1)} k€".rjust(7)

@@ -6,14 +6,17 @@ import pandas as pd
 import streamlit as st
 from sqlalchemy.orm import Session
 
-from src.deps import engine
 from src.gui import DataService
-from src.gui.painter import (CategoricalExpensesAnalysisBasePainter,
-                             CategoricalExpensesEvolutionBasePainter,
-                             SavingsEvolutionBasePainter,
-                             YearlySalaryBasePainter, YearlySavingsBasePainter)
+from src.gui.painter import (
+    CategoricalExpensesAnalysisPainter,
+    CategoricalExpensesEvolutionPainter,
+    SavingsEvolutionPainter,
+    YearlySalaryPainter,
+    YearlySavingsPainter,
+)
 from src.gui.painter.base import BasePainter
 from src.repositories import CategoriesRepository, FinancesRepository
+from utils.database import with_session
 
 plt.rcParams["font.family"] = "calibri"
 
@@ -56,7 +59,6 @@ def launch_gui(data_service: DataService, painters: Dict[str, BasePainter]):
     st.title("Finances Analysis")
 
     with st.container():
-
         col1, col2 = st.columns(2, gap="large")
 
         with col1:
@@ -115,25 +117,29 @@ def launch_gui(data_service: DataService, painters: Dict[str, BasePainter]):
             st.pyplot(painters["categorical_expenses_analysis"].paint(year=year))
 
 
+@with_session()
+def main(session: Session):
+    repositories = {
+        "repo_categories": CategoriesRepository(session),
+        "repo_finances": FinancesRepository(session),
+    }
+
+    data_service = DataService(**repositories)
+
+    painters = {
+        "categorical_expenses_analysis": CategoricalExpensesAnalysisPainter(
+            data_service
+        ),
+        "categorical_expenses_evolution": CategoricalExpensesEvolutionPainter(
+            data_service
+        ),
+        "salary_evolution": YearlySalaryPainter(data_service),
+        "savings_evolution": SavingsEvolutionPainter(data_service),
+        "yearly_savings": YearlySavingsPainter(data_service),
+    }
+
+    launch_gui(data_service, painters)
+
+
 if __name__ == "__main__":
-    with Session(engine) as session:
-        repositories_ = {
-            "repo_categories": CategoriesRepository(session),
-            "repo_finances": FinancesRepository(session),
-        }
-
-        data_service_ = DataService(**repositories_)
-
-        painters_ = {
-            "categorical_expenses_analysis": CategoricalExpensesAnalysisBasePainter(
-                data_service_
-            ),
-            "categorical_expenses_evolution": CategoricalExpensesEvolutionBasePainter(
-                data_service_
-            ),
-            "salary_evolution": YearlySalaryBasePainter(data_service_),
-            "savings_evolution": SavingsEvolutionBasePainter(data_service_),
-            "yearly_savings": YearlySavingsBasePainter(data_service_),
-        }
-
-        launch_gui(data_service_, painters_)
+    main()

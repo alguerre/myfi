@@ -52,10 +52,10 @@ class Repository(ABC):
         return pd.read_sql(query.statement, self._session.bind)
 
     def get_one(
-            self,
-            columns: Optional[List[str]] = None,
-            params: Optional[Dict] = None,
-            order: Optional[Order] = None,
+        self,
+        columns: Optional[List[str]] = None,
+        params: Optional[Dict] = None,
+        order: Optional[Order] = None,
     ) -> Dict:
         df = self.get(columns, params, order, 1)
 

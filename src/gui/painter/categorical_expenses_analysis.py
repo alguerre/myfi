@@ -4,7 +4,7 @@ from matplotlib.colors import to_hex
 from src.gui.painter.base import BasePainter
 
 
-class CategoricalExpensesAnalysisBasePainter(BasePainter):
+class CategoricalExpensesAnalysisPainter(BasePainter):
     def paint(self, **kwargs) -> plt.Figure:
         year: int = kwargs["year"]
 

@@ -4,7 +4,7 @@ from src.gui.painter.base import BasePainter
 from src.gui.service.data import DataService
 
 
-class YearlySalaryBasePainter(BasePainter):
+class YearlySalaryPainter(BasePainter):
     def __init__(self, data_service: DataService):
         super().__init__(data_service)
 

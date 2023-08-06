@@ -4,6 +4,9 @@ import sqlalchemy
 from sqlalchemy.engine.base import Engine
 from sqlalchemy.orm import Session, declarative_base
 
+from utils import paths
+from utils.config import get_config
+
 Base = declarative_base()
 
 
@@ -16,7 +19,11 @@ def get_engine(
     )
 
 
-def with_session(engine):
+# todo: engine have to be injected from Containers instead of global variable
+_engine: Engine = get_engine(**get_config(paths.config_db))
+
+
+def with_session(engine: Engine = _engine):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -28,7 +35,9 @@ def with_session(engine):
     return decorator
 
 
-def with_connection(engine):
+def with_connection(
+    engine: Engine = _engine,
+):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):

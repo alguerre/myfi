@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from src.gui.painter.base import BasePainter
 
 
-class SavingsEvolutionBasePainter(BasePainter):
+class SavingsEvolutionPainter(BasePainter):
     def _smooth(self, data: pd.Series) -> pd.Series:
         return data.ewm(span=50, adjust=True).mean()
 

@@ -12,8 +12,8 @@ class DataService:
         repo_finances: FinancesRepository,
     ):
         self.data = pd.merge(
-            left=repo_categories.get_all(),
-            right=repo_finances.get_all(),
+            left=repo_categories.get(),
+            right=repo_finances.get(),
             how="outer",
             left_on="id",
             right_on="category_id",

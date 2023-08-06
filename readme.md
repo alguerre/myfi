@@ -22,6 +22,7 @@
   - [x] Fix text issues in plots
 - [x] Launch gui from cli
 - [x] Include filters in dataframe
+- [ ] Fails if no categories
 ### Structure
 - [x] Repository with queries
 - [x] Decorator to manage session in cli
