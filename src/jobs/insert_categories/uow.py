@@ -1,8 +1,13 @@
+from typing import Callable
+
 from base.uow import UnitOfWork
 from repositories import CategoriesRepository, FinancesRepository
 
 
 class InsertCategoriesUow(UnitOfWork):
+    def __init__(self, session_factory: Callable):
+        self.session_factory = session_factory
+
     def __enter__(self):
         self.session = self.session_factory()
         self.repo_finances = FinancesRepository(self.session)

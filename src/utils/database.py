@@ -2,7 +2,7 @@ from functools import wraps
 
 import sqlalchemy
 from sqlalchemy.engine.base import Engine
-from sqlalchemy.orm import Session, declarative_base
+from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 from utils import paths
 from utils.config import get_config

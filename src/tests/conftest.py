@@ -6,7 +6,7 @@ from models import TABLES
 from utils.database import Base
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def in_memory_db():
     engine = create_engine("sqlite:///:memory:")
     with engine.connect() as connection:

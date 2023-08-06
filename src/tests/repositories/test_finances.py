@@ -67,7 +67,8 @@ def test_add_bulk(repo):
 
 def test_update(repo, session):
     insert_new_records(session)
-    n = repo.update(params={"concept": "gy%"}, values={"amount": 888})
+
+    n = repo.update(params={"concept": "gym"}, values={"amount": 888})
     session.commit()
 
     updated_row = session.execute(

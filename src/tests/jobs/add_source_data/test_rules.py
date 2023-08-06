@@ -35,6 +35,11 @@ def test_rules_exclude(simple_rules):
     assert simple_rules.exclude(data).to_dict("list") == {"concept": ["America"]}
 
 
+def test_rules_exclude__invalid_rule(simple_rules):
+    data = pd.DataFrame({"origin": ["a", "b", "c"]})
+    assert all(simple_rules.exclude(data) == data)
+
+
 def test_rules_savings(simple_rules):
     data = pd.DataFrame(
         {"concept": ["Europe", "America", "Europe"], "amount": [3, 4, 5]}
@@ -70,9 +75,14 @@ def test_rules_exclude__compose_rules(compose_rules):
 
 def test_rules_savings__compose_rules(compose_rules):
     data = pd.DataFrame(
-        {"concept": ["Europe", "America", "Europe"], "amount": [3, 4, 5]}
+        {
+            "concept": ["Europe", "America", "Europe"],
+            "amount": [3, 4, 5],
+            "origin": ["bank", "santander", "bank"],
+        }
     )
     assert compose_rules.savings(data).to_dict("list") == {
         "concept": ["Europe", "America", "Europe"],
         "amount": [3, 0, 5],
+        "origin": ["bank", "santander", "bank"],
     }

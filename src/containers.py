@@ -1,4 +1,5 @@
 from dependency_injector import containers, providers
+from sqlalchemy.orm import sessionmaker
 
 from src.jobs.add_source_data import AddDataService, AddDataUow
 from src.jobs.insert_categories import InsertCategoriesService, InsertCategoriesUow
@@ -11,15 +12,17 @@ class Container(containers.DeclarativeContainer):
     # Gateways
     engine = providers.Singleton(get_engine, **get_config(paths.config_db))
 
+    session_factory = providers.Factory(sessionmaker, engine)
+
     # Units of work
     add_data_uow = providers.Singleton(
         AddDataUow,
-        engine=engine,
+        session_factory=session_factory,
     )
 
     categories_uow = providers.Singleton(
         InsertCategoriesUow,
-        engine=engine,
+        session_factory=session_factory,
     )
 
     # Services
