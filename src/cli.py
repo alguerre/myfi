@@ -1,20 +1,19 @@
 import click
 from dependency_injector.wiring import Provide, inject
-from sqlalchemy import Connection
+from sqlalchemy import Engine
 from streamlit.web import bootstrap
 
-from jobs.add_source_data import (
+from src.jobs.add_source_data import (
     AddDataService,
     AddSourceDataCommand,
 )
-from jobs.insert_categories import (
+from src.jobs.insert_categories import (
     InsertCategoriesCommand,
     InsertCategoriesService,
 )
 from src.containers import Container
 from src.jobs.create_tables import CreateTableCommand
 from src.utils.paths import paths
-from utils.database import with_connection
 
 
 @click.group()
@@ -34,9 +33,10 @@ def add_source_data(
 
 
 @cli.command()
-@with_connection()
-def create_tables(connection: Connection):
-    CreateTableCommand(connection).execute()
+@inject
+def create_tables(engine: Engine = Provide[Container.engine]):
+    with engine.connect() as connection:
+        CreateTableCommand(connection).execute()
 
 
 @cli.command()

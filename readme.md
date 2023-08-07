@@ -9,13 +9,6 @@
 - [x] Modify raw queries for ORM
 - [ ] Migrations to avoid table regeneration -> alembic
 - [ ] Usage of two tables is not needed, categories can be included in finances
-### Domain logic
-- [x] Bug in number of insertions
-- [x] Identify savings better
-  - [x] foreign key to finance in savings table
-- [x] Include other banks 
-  - Create repositories
-- [ ] ~~Avoid updating twice the savings table~~ savings table is removed
 ### GUI
 - [x] Create GUI with streamlit
   - [x] Create containers
@@ -26,8 +19,8 @@
 ### Structure
 - [x] Repository with queries
 - [x] Decorator to manage session in cli
-- [ ] Create tests
-- [ ] Create a painters and repo factory
+- [x] Create tests
+- [x] Create a painters and repo factory
   - The proper approach would be the Unit of Work pattern
   - https://itnext.io/decoupling-python-code-implementing-the-unit-of-work-and-repository-pattern-6b3257e8b167
 - [x] Add to git
@@ -40,3 +33,14 @@
   - We should have db-repositories and file-repositories
 - [x] Savings table can be removed and just create new column in finances
 - [x] Simplify repository layer, only methods get/add/update including params dict as argument
+### Global
+- [x] Bug in number of insertions
+- [x] Identify savings better
+  - [x] foreign key to finance in savings table
+- [x] Include other banks 
+  - Create repositories
+- [x] ~~Avoid updating twice the savings table~~ savings table is removed
+- [ ] Caching in data service
+- [ ] Can infra be launched from docker-compose?
+- [ ] Enable github CI
+- [ ] Create issues and reword commits

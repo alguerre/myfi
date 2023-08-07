@@ -1,14 +1,42 @@
+import pandas as pd
 from matplotlib import pyplot as plt
 
 from src.gui.painter.base import BasePainter
-from src.gui.service.data import DataService
 
 
 class YearlySavingsPainter(BasePainter):
-    def __init__(self, data_service: DataService):
-        super().__init__(data_service)
+    def paint(self) -> plt.Figure:
+        data = self.data_service.yearly_savings()
 
-    def _paint_values_inside_columns(
+        colors = self._color_gradient(data)
+
+        fig, ax = plt.subplots()
+        ax.bar(data.index, data.values, color=colors, zorder=2)
+
+        ax.set_title("Savings per Year", weight="bold", fontsize=20)
+
+        ax.grid(axis="y", zorder=1)
+
+        self._remove_spines(ax)
+        self._remove_tick_params(ax)
+
+        self.labels_in_column(ax, data)
+
+        return fig
+
+    def labels_in_column(self, ax: plt.Axes, data: pd.Series):
+        max_value, max_year = data.max(), data.idxmax()
+        min_value, min_year = (  # skip first year, likely incomplete
+            data.iloc[1:-1].min(),
+            data.iloc[1:-1].idxmin(),
+        )
+        curr_value, curr_year = data.iloc[-1], data.index[-1]
+
+        self.draw_label_in_column(ax, max_value, max_year)
+        self.draw_label_in_column(ax, min_value, min_year)
+        self.draw_label_in_column(ax, curr_value, curr_year)
+
+    def draw_label_in_column(
         self,
         ax: plt.Axes,
         value: int,
@@ -27,27 +55,3 @@ class YearlySavingsPainter(BasePainter):
             self._money_to_string(value),
             **text_format,
         )
-
-    def paint(self) -> plt.Figure:
-        data = self.data_service.yearly_savings()
-        fig, ax = plt.subplots()
-
-        ax.set_title("Savings per Year", weight="bold", fontsize=20)
-
-        self._remove_spines(ax)
-        self._remove_tick_params(ax)
-        colors = self._color_gradient(data)
-
-        max_value, max_year = data.max(), data.idxmax()
-        min_value, min_year = data.iloc[1:-1].min(), data.iloc[1:-1].idxmin()
-        curr_value, curr_year = data.iloc[-1], data.index[-1]
-
-        self._paint_values_inside_columns(ax, max_value, max_year)
-        self._paint_values_inside_columns(ax, min_value, min_year)
-        self._paint_values_inside_columns(ax, curr_value, curr_year)
-
-        ax.grid(axis="y", zorder=1)
-
-        ax.bar(data.index, data.values, color=colors, zorder=2)
-
-        return fig

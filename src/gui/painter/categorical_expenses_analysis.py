@@ -1,5 +1,8 @@
+from typing import List
+
 from matplotlib import pyplot as plt
 from matplotlib.colors import to_hex
+from matplotlib.text import Text
 
 from src.gui.painter.base import BasePainter
 
@@ -8,35 +11,37 @@ class CategoricalExpensesAnalysisPainter(BasePainter):
     def paint(self, **kwargs) -> plt.Figure:
         year: int = kwargs["year"]
 
-        data = self.data_service.categorized_expenses_for_year(year)
-
-        colormap_name = "Set2"
-        cmap = plt.get_cmap(colormap_name)
-        num_colors = len(data)
-        custom_cmap = cmap(range(num_colors))
-        custom_colors = [to_hex(color) for color in custom_cmap]
+        data = self.data_service.categorized_expenses(year)
 
         fig, ax = plt.subplots()
-        patches, texts, autotexts = ax.pie(
+        _, texts, autotexts = ax.pie(
             data.share,
             labels=data.index,
             autopct="%1.2f%%",
-            colors=custom_colors,
+            colors=self.get_colors(len(data)),
             startangle=90,
             counterclock=False,
-            # labeldistance=0.75,
             pctdistance=0.7,
             wedgeprops={"linewidth": 1, "edgecolor": "white"},
             explode=len(data) * [0.02],
         )
 
-        # Customize text labels
-        for text in texts:
-            text.set_horizontalalignment("center")
-
-        # Customize percent labels
-        for autotext in autotexts:
-            autotext.set_horizontalalignment("center")
-            autotext.set_fontstyle("italic")
+        self.customize_text_labels(texts)
+        self.customize_percent_labels(autotexts)
 
         return fig
+
+    def get_colors(self, num_colors: int) -> List:
+        colormap_name = "Set2"
+        cmap = plt.get_cmap(colormap_name)
+        custom_cmap = cmap(range(num_colors))
+        return [to_hex(color) for color in custom_cmap]
+
+    def customize_text_labels(self, texts: List[Text]):
+        for t in texts:
+            t.set_horizontalalignment("center")
+
+    def customize_percent_labels(self, texts: List[Text]):
+        for t in texts:
+            t.set_horizontalalignment("center")
+            t.set_fontstyle("italic")

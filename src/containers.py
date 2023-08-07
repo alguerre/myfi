@@ -1,6 +1,14 @@
 from dependency_injector import containers, providers
 from sqlalchemy.orm import sessionmaker
 
+from src.gui.painter import (
+    CategoricalExpensesAnalysisPainter,
+    CategoricalExpensesEvolutionPainter,
+    SavingsEvolutionPainter,
+    YearlySalaryPainter,
+    YearlySavingsPainter,
+)
+from src.gui.service import DataService, DataUow
 from src.jobs.add_source_data import AddDataService, AddDataUow
 from src.jobs.insert_categories import InsertCategoriesService, InsertCategoriesUow
 from src.utils.config import get_config
@@ -25,6 +33,11 @@ class Container(containers.DeclarativeContainer):
         session_factory=session_factory,
     )
 
+    data_uow = providers.Singleton(
+        DataUow,
+        session_factory=session_factory,
+    )
+
     # Services
     add_data_service = providers.Factory(
         AddDataService,
@@ -34,4 +47,33 @@ class Container(containers.DeclarativeContainer):
     categories_service = providers.Factory(
         InsertCategoriesService,
         uow=categories_uow,
+    )
+
+    data_service = providers.Factory(
+        DataService,
+        uow=data_uow,
+    )
+
+    # Painters
+    painters = providers.Dict(
+        categorical_expenses_analysis=providers.Factory(
+            CategoricalExpensesAnalysisPainter,
+            data_service=data_service,
+        ),
+        categorical_expenses_evolution=providers.Factory(
+            CategoricalExpensesEvolutionPainter,
+            data_service=data_service,
+        ),
+        salary_evolution=providers.Factory(
+            YearlySalaryPainter,
+            data_service=data_service,
+        ),
+        savings_evolution=providers.Factory(
+            SavingsEvolutionPainter,
+            data_service=data_service,
+        ),
+        yearly_savings=providers.Factory(
+            YearlySavingsPainter,
+            data_service=data_service,
+        ),
     )
