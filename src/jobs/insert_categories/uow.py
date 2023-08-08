@@ -1,7 +1,7 @@
 from typing import Callable
 
-from base.uow import UnitOfWork
-from repositories import CategoriesRepository, FinancesRepository
+from src.base.uow import UnitOfWork
+from src.repositories import CategoriesRepository, FinancesRepository
 
 
 class InsertCategoriesUow(UnitOfWork):

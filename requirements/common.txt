@@ -18,6 +18,3 @@ streamlit==1.25.0
 # Utils
 dependency-injector==4.41.0
 pyyaml==6.0
-
-# Tests
-pytest==7.4.0

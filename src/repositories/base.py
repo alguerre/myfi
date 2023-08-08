@@ -5,8 +5,8 @@ import pandas as pd
 from sqlalchemy import asc, desc, func
 from sqlalchemy.orm import Session
 
-from utils.database import Base
-from utils.order import Order
+from src.utils.database import Base
+from src.utils.order import Order
 
 
 class Repository(ABC):
@@ -29,7 +29,6 @@ class Repository(ABC):
         order: Optional[Order] = None,
         limit: Optional[int] = None,
     ) -> pd.DataFrame:
-
         query = self._session.query(self._table)
 
         if columns:

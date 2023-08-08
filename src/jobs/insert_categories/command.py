@@ -1,4 +1,4 @@
-from base.command import Command
+from src.base.command import Command
 from src.jobs.insert_categories.service import InsertCategoriesService
 from src.utils.config import get_config
 from src.utils.counter import Counter

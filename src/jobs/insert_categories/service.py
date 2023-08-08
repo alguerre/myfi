@@ -2,7 +2,7 @@ from typing import List
 
 from src.base.service import BaseService
 from src.jobs.insert_categories.uow import InsertCategoriesUow
-from utils.counter import Counter
+from src.utils.counter import Counter
 
 
 class InsertCategoriesService(BaseService):

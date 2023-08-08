@@ -2,9 +2,9 @@ from typing import Dict, Optional
 
 import pandas as pd
 
-from utils.config import get_config
-from utils.logging import get_logger
-from utils.paths import paths
+from src.utils.config import get_config
+from src.utils.logging import get_logger
+from src.utils.paths import paths
 
 logger = get_logger(__name__)
 

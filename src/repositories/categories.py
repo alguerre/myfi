@@ -1,5 +1,5 @@
-from repositories.base import Repository
 from src.models import Categories
+from src.repositories.base import Repository
 
 
 class CategoriesRepository(Repository):

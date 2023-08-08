@@ -2,7 +2,7 @@ from typing import List
 
 import pandas as pd
 
-from gui.service.uow import DataUow
+from src.gui.service.uow import DataUow
 
 
 class DataService:

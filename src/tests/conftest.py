@@ -2,8 +2,8 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from models import TABLES
-from utils.database import Base
+from src.models import TABLES
+from src.utils.database import Base
 
 
 @pytest.fixture(autouse=True)
