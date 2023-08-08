@@ -1,10 +1,11 @@
-import pandas as pd
-
-from base.uow import UnitOfWork
-from jobs.add_source_data import AddDataService
-from repositories.base import Repository
-from pytest import fixture
 from datetime import date, datetime
+
+import pandas as pd
+from pytest import fixture
+
+from src.base.uow import UnitOfWork
+from src.jobs.add_source_data import AddDataService
+from src.repositories.base import Repository
 
 
 class FakeRepository(Repository):

@@ -4,8 +4,8 @@ import pandas as pd
 from pytest import fixture
 from sqlalchemy import text
 
-from repositories import FinancesRepository
-from utils.order import Order
+from src.repositories import FinancesRepository
+from src.utils.order import Order
 
 
 @fixture()

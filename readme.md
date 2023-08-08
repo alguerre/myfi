@@ -42,5 +42,5 @@
 - [x] ~~Avoid updating twice the savings table~~ savings table is removed
 - [ ] Caching in data service
 - [ ] Can infra be launched from docker-compose?
-- [ ] Enable github CI
-- [ ] Create issues and reword commits
+- [x] Enable github CI
+- [x] Create issues and reword commits
