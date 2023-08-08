@@ -7,6 +7,7 @@ pandera==0.16.1
 xlrd==2.0.1
 
 # Database
+alembic==1.11.2
 psycopg2==2.9.6
 sqlalchemy==2.0.19
 

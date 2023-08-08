@@ -1,8 +1,8 @@
 import click
 from dependency_injector.wiring import Provide, inject
-from sqlalchemy import Engine
 from streamlit.web import bootstrap
 
+from src.containers import Container
 from src.jobs.add_source_data import (
     AddDataService,
     AddSourceDataCommand,
@@ -11,8 +11,6 @@ from src.jobs.insert_categories import (
     InsertCategoriesCommand,
     InsertCategoriesService,
 )
-from src.containers import Container
-from src.jobs.create_tables import CreateTableCommand
 from src.utils.paths import paths
 
 
@@ -30,13 +28,6 @@ def add_source_data(
     # only to be after injected service, but obligatory field
 ):
     AddSourceDataCommand(service, file).execute()
-
-
-@cli.command()
-@inject
-def create_tables(engine: Engine = Provide[Container.engine]):
-    with engine.connect() as connection:
-        CreateTableCommand(connection).execute()
 
 
 @cli.command()

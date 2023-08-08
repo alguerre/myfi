@@ -7,7 +7,7 @@
 - [x] Use foreign key for categories
 - [x] Create tables from SQLAlchemy models
 - [x] Modify raw queries for ORM
-- [ ] Migrations to avoid table regeneration -> alembic
+- [x] Migrations to avoid table regeneration -> alembic
 - [ ] Usage of two tables is not needed, categories can be included in finances
 ### GUI
 - [x] Create GUI with streamlit
