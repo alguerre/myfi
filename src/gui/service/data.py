@@ -1,3 +1,4 @@
+from functools import cache, cached_property
 from typing import List
 
 import pandas as pd
@@ -38,15 +39,15 @@ class DataService:
         self._data["category"] = self._data["category"].fillna("UNCATEGORIZED")
         self._data["year"] = pd.to_datetime(self._data["date"]).dt.year
 
-    @property
+    @cached_property
     def years(self) -> List[int]:
         return list(self._data["year"].unique())
 
-    @property
+    @cached_property
     def categories(self) -> List[str]:
         return sorted(self._data["category"].unique())
 
-    @property
+    @cached_property
     def data(self) -> pd.DataFrame:
         data = self._data.drop(["year"], axis=1)
         data.loc[:, "concept"] = data["concept"].replace(
@@ -54,6 +55,7 @@ class DataService:
         )  # using loc to avoid warnings
         return data.sort_values("date", ascending=False).reset_index(drop=True)
 
+    @cache
     def total_salary_per_year(self) -> pd.DataFrame:
         return (
             self._data[self._data.category == "SALARY"][["amount", "year"]]
@@ -61,12 +63,14 @@ class DataService:
             .sum()
         )
 
+    @cache
     def expenses_per_category_per_year(self, category: str) -> pd.DataFrame:
         data = self._data[self._data.category == category]
         data = data[["amount", "year"]]
         data = data.groupby(by=["year"]).sum()
         return data
 
+    @cache
     def categorized_expenses(self, year: int) -> pd.DataFrame:
         # Group by category
         data = self._data[self._data.year == year]
@@ -90,10 +94,12 @@ class DataService:
 
         return pd.concat([data_representative, remaining])
 
+    @cache
     def total_money(self) -> pd.DataFrame:
         data = self._data.sort_values(by="date")
         return data[["date", "total"]]
 
+    @cache
     def yearly_savings(self) -> pd.Series:
         first = self._data.groupby("year").first().total
         last = self._data.groupby("year").last().total
