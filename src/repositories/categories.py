@@ -1,3 +1,5 @@
+from typing import Optional
+
 from src.models import Categories
 from src.repositories.base import Repository
 
@@ -13,3 +15,11 @@ class CategoriesRepository(Repository):
         self.session.add(instance)
         self.session.commit()
         return instance.id
+
+    def get_id_by_category(self, category: str) -> Optional[int]:
+        category_id = self.get_one(
+            columns=["id"], params={"category": category.upper()}
+        )
+        if category_id:
+            return int(category_id.get("id"))  # avoid pandas type
+        return None

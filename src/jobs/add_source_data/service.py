@@ -12,12 +12,10 @@ class AddDataService(BaseService):
     def is_new_data(self, data: pd.DataFrame) -> bool:
         with self.uow:
             bank = data["origin"].iloc[0]
-            last_date = self.uow.repo.get_one(
-                columns=["date"], params={"origin": bank}, order=Order.desc
-            )
+            last_date = self.uow.repo.get_last_date(bank)
 
-            if last_date.get("date"):  # will be none if no data for that bank in db
-                if data["date"].min().date() <= last_date["date"]:
+            if last_date:  # will be none if no data for that bank in db
+                if data["date"].min().date() <= last_date:
                     return False
             return True
 

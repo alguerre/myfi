@@ -15,8 +15,8 @@ class FakeRepository(Repository):
     def add_bulk(self, data):
         return len(data)
 
-    def get_one(self, *args, **kwargs):
-        return {"date": date(2000, 3, 27)}
+    def get_last_date(self, origin: str):
+        return date(2000, 3, 27)
 
 
 class FakeUnitOfWork(UnitOfWork):
