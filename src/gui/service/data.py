@@ -77,8 +77,8 @@ class DataService:
         data = data[["amount", "category"]]
         data = data.groupby(by=["category"]).sum()
 
-        # Remove income categories
-        data = data[data.amount < 0]
+        # Remove income categories if categorize, else 100% of single category
+        data = data[data.amount < 0] if len(data) > 1 else data
 
         # Compute share
         data.amount = abs(data.amount)
@@ -88,10 +88,13 @@ class DataService:
         # Group all of those representing less than 5%
         data_representative = data[data.share >= 5]
         data_grouped = data[data.share <= 5]
+
+        if data_grouped.empty:
+            return data_representative
+
         remaining = pd.DataFrame(
             {"share": sum(data_grouped.share)}, index=["REMAINING"]
         )
-
         return pd.concat([data_representative, remaining])
 
     @cache
