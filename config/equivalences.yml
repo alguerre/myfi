@@ -1,0 +1,40 @@
+BILLS:
+  - Electricity
+  - Internet
+
+HOUSING:
+  - TRANSFER TO MR. HOUSE HOLDER
+
+LEISURE:
+  - Yum Popcorn Horizon
+  - cinemasi
+
+ONLINE_SERVICES:
+  - netflix
+
+RESTAURANTS:
+  - The Hungry Harvest
+  - Bistro Captain
+  - Deli Feast
+
+SALARY:
+  - Acme Corporation
+
+SPORT:
+  - Hulking Center
+
+SUPERMARKET:
+  - Yum Market
+  - Yums N Food
+  - Marineara
+
+TRANSPORT:
+  - bus
+  - train
+  - petrol
+  - gas
+
+TRAVEL:
+  - Skyline Airways
+  - Oceanic Airlines
+  - Hotel

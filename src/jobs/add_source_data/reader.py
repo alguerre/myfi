@@ -97,4 +97,12 @@ class N26(Reader):
         return data
 
 
-_readers = {"n26": N26(), "sabadell": Sabadell()}
+class Dummy(Reader):
+    @validate_data
+    def read(self, file):
+        data = pd.read_csv(file)
+        data["date"] = pd.to_datetime(data["date"], format="%Y-%m-%d")
+        return data
+
+
+_readers = {"n26": N26(), "sabadell": Sabadell(), "dummy": Dummy()}

@@ -1,7 +1,7 @@
 ## Tasks
 ### Data
 - [ ] ~~Pick all categories from 2019~~
-- [ ] Generate a dummy data/source_*.xls file
+- [x] Generate a dummy data/source_*.xls file
 - [ ] Manual categorization of bizum and transfers
 ### Database
 - [x] Use foreign key for categories
