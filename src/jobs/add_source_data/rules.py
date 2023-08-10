@@ -24,7 +24,7 @@ class Rules:
                     data_filter = data_filter & (data[field] == value)
             except KeyError:
                 logger.warning(
-                    f"Field [{field}] not available in data. " f"Invalid rule [{rule}]."
+                    f"Field [{field}] not available in data. Invalid rule [{rule}]."
                 )
                 return None
         return data_filter
@@ -33,7 +33,7 @@ class Rules:
         """remove from dataframe all those rows matching the rule criteria"""
         logger.info("Applying EXCLUDE rules.")
 
-        for rule in self._rules["EXCLUDE"]:
+        for rule in self._rules.get("EXCLUDE", []):
             data_filter = self.build_filter(data, rule)
             if data_filter is not None:
                 data = data.drop(data[data_filter].index, axis=0)
@@ -45,7 +45,7 @@ class Rules:
         # todo: these data could be just excluded
         logger.info("Applying SAVINGS rules.")
 
-        for rule in self._rules["SAVINGS"]:
+        for rule in self._rules.get("SAVINGS", []):
             data_filter = self.build_filter(data, rule)
             if data_filter is not None:
                 data.loc[data_filter, "amount"] = 0

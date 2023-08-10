@@ -1,0 +1,3 @@
+EXCLUDE:  # they are not loaded into db
+  - concept: secret payment
+    origin: dummy
