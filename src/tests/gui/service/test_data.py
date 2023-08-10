@@ -103,6 +103,31 @@ def test_categorized_expenses(service):
     assert round(share["REMAINING"], 1) == 3.9
 
 
+def test_categorized_expenses__single_category():
+    uow = FakeUnitOfWork()
+    repo_categories = FakeRepository(
+        data=pd.DataFrame({"id": [1], "category": ["CASH"]})
+    )
+    repo_finances = FakeRepository(
+        data=pd.DataFrame(
+            {
+                "category_id": [1],
+                "amount": [-100],
+                "date": [date(2020, 1, 1)],
+                "total": [0],
+                "concept": ["total"],
+            }
+        )
+    )
+    uow.repo_categories = repo_categories
+    uow.repo_finances = repo_finances
+    service = DataService(uow)
+
+    expenses = service.categorized_expenses(2020).to_dict()
+    share = expenses["share"]
+    assert round(share["CASH"], 1) == 100
+
+
 def test_total_money(service):
     assert service.total_money().to_dict("list") == {
         "date": [date(2020, 1, day + 1) for day in range(5)]

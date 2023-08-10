@@ -2,11 +2,25 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 from src.gui.painter.base import BasePainter
+from src.utils.logging import get_logger
+
+
+logger = get_logger(__name__)
 
 
 class YearlySalaryPainter(BasePainter):
     def paint(self) -> plt.Figure:
         data = self.data_service.total_salary_per_year()
+
+        if data.empty:
+            msg = "No salary data. Is a 'salary' category exiting?"
+            logger.warning(msg)
+            years = self.data_service.years
+
+            fig, ax = plt.subplots()
+            ax.bar(years, len(years) * [0])
+            ax.text(years[0], 0, msg)
+            return fig
 
         colors = self._color_gradient(data.amount)
 
