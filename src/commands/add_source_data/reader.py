@@ -7,7 +7,7 @@ from typing import Callable
 import pandas as pd
 import pandera as pa
 
-from src.jobs.add_source_data.error import InvalidFilenameError
+from src.commands.add_source_data.error import InvalidFilenameError
 
 schema = pa.DataFrameSchema(
     {

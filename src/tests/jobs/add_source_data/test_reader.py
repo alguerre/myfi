@@ -2,8 +2,8 @@ from contextlib import nullcontext as does_not_raise
 
 from pytest import mark, raises
 
-from src.jobs.add_source_data.error import InvalidFilenameError
-from src.jobs.add_source_data.reader import Reader, get_reader, identify_bank
+from src.commands.add_source_data.error import InvalidFilenameError
+from src.commands.add_source_data.reader import Reader, get_reader, identify_bank
 
 
 @mark.parametrize(

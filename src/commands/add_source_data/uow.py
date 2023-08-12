@@ -1,6 +1,6 @@
 from typing import Callable
 
-from src.base.uow import UnitOfWork
+from src.commands.base.uow import UnitOfWork
 from src.repositories import FinancesRepository
 
 

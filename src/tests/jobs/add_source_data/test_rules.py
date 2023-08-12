@@ -3,12 +3,12 @@ from unittest.mock import patch
 import pandas as pd
 from pytest import fixture
 
-from src.jobs.add_source_data.rules import Rules
+from src.commands.add_source_data.rules import Rules
 
 
 @fixture()
 def simple_rules() -> Rules:
-    with patch("src.jobs.add_source_data.rules.get_config") as config:
+    with patch("src.commands.add_source_data.rules.get_config") as config:
         config.return_value = {
             "EXCLUDE": [{"concept": "Europe"}],
             "SAVINGS": [{"concept": "America"}],
@@ -20,7 +20,7 @@ def simple_rules() -> Rules:
 
 @fixture()
 def compose_rules() -> Rules:
-    with patch("src.jobs.add_source_data.rules.get_config") as config:
+    with patch("src.commands.add_source_data.rules.get_config") as config:
         config.return_value = {
             "EXCLUDE": [{"concept": "Europe", "origin": "bbva"}],
             "SAVINGS": [{"concept": "America", "origin": "santander"}],

@@ -1,5 +1,5 @@
-from src.base.command import Command
-from src.jobs.insert_categories.service import InsertCategoriesService
+from src.commands.base.command import Command
+from src.commands.insert_categories.service import InsertCategoriesService
 from src.utils.config import get_config
 from src.utils.counter import Counter
 from src.utils.logging import get_logger

@@ -3,11 +3,11 @@ from dependency_injector.wiring import Provide, inject
 from streamlit.web import bootstrap
 
 from src.containers import Container
-from src.jobs.add_source_data import (
+from src.commands.add_source_data import (
     AddDataService,
     AddSourceDataCommand,
 )
-from src.jobs.insert_categories import (
+from src.commands.insert_categories import (
     InsertCategoriesCommand,
     InsertCategoriesService,
 )

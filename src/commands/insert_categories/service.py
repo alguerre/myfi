@@ -1,7 +1,7 @@
 from typing import List
 
-from src.base.service import BaseService
-from src.jobs.insert_categories.uow import InsertCategoriesUow
+from src.commands.base.service import BaseService
+from src.commands.insert_categories.uow import InsertCategoriesUow
 from src.utils.counter import Counter
 
 

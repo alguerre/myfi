@@ -1,9 +1,9 @@
 import pandas as pd
 
-from src.base.command import Command
-from src.jobs.add_source_data.reader import get_reader
-from src.jobs.add_source_data.rules import Rules
-from src.jobs.add_source_data.service import AddDataService
+from src.commands.add_source_data.reader import get_reader
+from src.commands.add_source_data.rules import Rules
+from src.commands.add_source_data.service import AddDataService
+from src.commands.base.command import Command
 from src.utils.logging import get_logger
 
 logger = get_logger(__name__)

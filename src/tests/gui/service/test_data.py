@@ -3,7 +3,7 @@ from datetime import date
 import pandas as pd
 from pytest import fixture
 
-from src.base.uow import UnitOfWork
+from src.commands.base.uow import UnitOfWork
 from src.gui.service import DataService
 from src.repositories.base import Repository
 

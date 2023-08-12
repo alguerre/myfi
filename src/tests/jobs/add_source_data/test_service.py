@@ -3,8 +3,8 @@ from datetime import date, datetime
 import pandas as pd
 from pytest import fixture
 
-from src.base.uow import UnitOfWork
-from src.jobs.add_source_data import AddDataService
+from src.commands.add_source_data import AddDataService
+from src.commands.base.uow import UnitOfWork
 from src.repositories.base import Repository
 
 

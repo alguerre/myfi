@@ -1,8 +1,7 @@
 import pandas as pd
 
-from src.base.service import BaseService
-from src.jobs.add_source_data.uow import AddDataUow
-from src.utils.order import Order
+from src.commands.add_source_data.uow import AddDataUow
+from src.commands.base.service import BaseService
 
 
 class AddDataService(BaseService):

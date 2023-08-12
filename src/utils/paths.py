@@ -7,7 +7,7 @@ class Paths:
     this: Path = Path(__file__).resolve().parent
     src: Path = this.parent
     finances: Path = src.parent
-    jobs: Path = src / "jobs"
+    commands: Path = src / "commands"
     gui: Path = src / "gui" / "gui.py"
     config: Path = finances / "config"
     config_db: Path = config / "database.yml"
