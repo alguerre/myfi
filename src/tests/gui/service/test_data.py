@@ -1,10 +1,10 @@
 from datetime import date
 
 import pandas as pd
-from pytest import fixture
+from pytest import fixture, raises
 
 from src.commands.base.uow import UnitOfWork
-from src.gui.service import DataService
+from src.gui.service import DataService, NoDataError
 from src.repositories.base import Repository
 
 
@@ -156,3 +156,18 @@ def test_yearly_savings(service):
         2021: 1201.0,
         2022: -2200.0,
     }
+
+
+def test_instantiation__no_data():
+    uow = FakeUnitOfWork()
+    repo_categories = FakeRepository(data=pd.DataFrame({"id": [], "category": []}))
+    repo_finances = FakeRepository(
+        data=pd.DataFrame(
+            {"date": [], "concept": [], "amount": [], "total": [], "category_id": []}
+        )
+    )
+    uow.repo_categories = repo_categories
+    uow.repo_finances = repo_finances
+
+    with raises(NoDataError):
+        DataService(uow)
