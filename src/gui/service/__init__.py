@@ -1,2 +1,2 @@
-from .data import DataService
+from .data import DataService, NoDataError
 from .uow import DataUow

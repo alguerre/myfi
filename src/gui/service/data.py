@@ -4,6 +4,9 @@ from typing import List
 import pandas as pd
 
 from src.gui.service.uow import DataUow
+from src.utils.logging import get_logger
+
+logger = get_logger(__name__)
 
 
 class DataService:
@@ -17,11 +20,14 @@ class DataService:
             self._data = pd.merge(
                 left=uow.repo_categories.get(),
                 right=uow.repo_finances.get(),
-                how="outer",
+                how="right",
                 left_on="id",
                 right_on="category_id",
                 suffixes=("_categories", "_finances"),
             )
+
+        if self._data.empty:
+            raise NoDataError("No data has been loaded.")
 
         # Convert savings amount to 0  # todo: do this concept of SAVINGS makes sense?
         self._data.loc[self._data["category"] == "SAVINGS", "amount"] = 0
@@ -107,3 +113,7 @@ class DataService:
         first = self._data.groupby("year").first().total
         last = self._data.groupby("year").last().total
         return last - first
+
+
+class NoDataError(Exception):
+    pass
