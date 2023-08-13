@@ -1,6 +1,6 @@
 import re
 
-from src.commands.add_source_data.error import InvalidFilenameError
+from src.commands.add_data.error import InvalidFilenameError
 
 
 def identify_bank(filename: str) -> str:

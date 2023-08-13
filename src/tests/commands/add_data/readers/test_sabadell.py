@@ -1,4 +1,4 @@
-from src.commands.add_source_data.readers import Sabadell
+from src.commands.add_data.readers import Sabadell
 
 
 def test_sabadell(sample_bank_history, sample_files):

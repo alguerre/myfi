@@ -9,7 +9,7 @@ from src.gui.painter import (
     YearlySavingsPainter,
 )
 from src.gui.service import DataService, DataUow
-from src.commands.add_source_data import AddDataService, AddDataUow
+from src.commands.add_data import AddDataService, AddDataUow
 from src.commands.insert_categories import InsertCategoriesService, InsertCategoriesUow
 from src.utils.config import get_config
 from src.utils.database import get_engine

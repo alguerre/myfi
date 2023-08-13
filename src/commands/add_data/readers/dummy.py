@@ -1,7 +1,7 @@
 import pandas as pd
 
-from src.commands.add_source_data.readers.base import Reader
-from src.commands.add_source_data.readers.validation import validate_data
+from src.commands.add_data.readers.base import Reader
+from src.commands.add_data.readers.validation import validate_data
 
 
 class Dummy(Reader):

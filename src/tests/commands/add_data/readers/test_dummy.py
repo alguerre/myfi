@@ -1,4 +1,4 @@
-from src.commands.add_source_data.readers import Dummy
+from src.commands.add_data.readers import Dummy
 
 
 def test_dummy(sample_bank_history, sample_files):

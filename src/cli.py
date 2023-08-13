@@ -3,9 +3,9 @@ from dependency_injector.wiring import Provide, inject
 from streamlit.web import bootstrap
 
 from src.containers import Container
-from src.commands.add_source_data import (
+from src.commands.add_data import (
     AddDataService,
-    AddSourceDataCommand,
+    AddDataCommand,
 )
 from src.commands.insert_categories import (
     InsertCategoriesCommand,
@@ -22,12 +22,12 @@ def cli():
 @cli.command()
 @inject
 @click.argument("file", type=str)
-def add_source_data(
+def add_data(
     service: AddDataService = Provide[Container.add_data_service],
     file: str = "",
     # only to be after injected service, but obligatory field
 ):
-    AddSourceDataCommand(service, file).execute()
+    AddDataCommand(service, file).execute()
 
 
 @cli.command()

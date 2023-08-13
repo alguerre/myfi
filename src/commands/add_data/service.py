@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.commands.add_source_data.uow import AddDataUow
+from src.commands.add_data.uow import AddDataUow
 from src.commands.base.service import BaseService
 
 

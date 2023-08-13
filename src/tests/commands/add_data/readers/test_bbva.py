@@ -1,4 +1,4 @@
-from src.commands.add_source_data.readers import Bbva
+from src.commands.add_data.readers import Bbva
 
 
 def test_bbva(sample_bank_history, sample_files):

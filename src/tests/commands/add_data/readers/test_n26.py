@@ -1,4 +1,4 @@
-from src.commands.add_source_data.readers import N26
+from src.commands.add_data.readers import N26
 
 
 def test_n26(sample_bank_history, sample_files):

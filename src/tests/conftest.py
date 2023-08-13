@@ -42,7 +42,7 @@ def sample_bank_history():
 def sample_files():
     current_directory = dirname(__file__)
     samples_directory = join(
-        current_directory, "commands", "add_source_data", "readers", "samples"
+        current_directory, "commands", "add_data", "readers", "samples"
     )
     return {
         "bbva": join(samples_directory, "source_bbva_01012018_to_03012018.xlsx"),
