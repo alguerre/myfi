@@ -1,0 +1,4 @@
+"Fecha","Beneficiario","Número de cuenta","Tipo de transacción","Referencia de pago","Cantidad (EUR)","Cantidad (Divisa extranjera)","Tipo de divisa extranjera","Tipo de cambio"
+"2018-01-01","Acme Corporation","","Ingreso","","2000.0","2000.0","EUR","1.0"
+"2018-01-02","netflix","","Pago con MasterCard","","-15.0","-15.0","EUR","1.0"
+"2018-01-03","Hulking Center","","Pago con MasterCard","","-50.0","-50.0","EUR","1.0"

@@ -2,8 +2,8 @@ from contextlib import nullcontext as does_not_raise
 
 from pytest import mark, raises
 
-from src.commands.add_source_data.error import InvalidFilenameError
-from src.commands.add_source_data.reader import Reader, get_reader, identify_bank
+from src.commands.add_data.error import InvalidFilenameError
+from src.commands.add_data.readers import Reader, get_reader, identify_bank
 
 
 @mark.parametrize(
@@ -24,7 +24,7 @@ def test_identify_bank(filename: str, result: str, expectation):
     [
         ("source_santander_05062019_to_23072023.csv", raises(NotImplementedError)),
         ("source_sabadell_05062019_to_23072023.csv", does_not_raise()),
-        ("source_n26_05062019_to_23072023.csv", does_not_raise()),
+        ("source_n26_01012018_to_03012018.csv", does_not_raise()),
     ],
 )
 def test_get_reader(file: str, expectation):
