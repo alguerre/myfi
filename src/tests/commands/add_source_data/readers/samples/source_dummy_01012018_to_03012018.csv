@@ -1,0 +1,4 @@
+date,amount,concept,origin,total
+2018-01-01,2000.0,Acme Corporation,dummy,2000.0
+2018-01-02,-15.0,netflix,dummy,1985.0
+2018-01-03,-50.0,Hulking Center,dummy,1935.0

@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.commands.add_source_data.reader import get_reader
+from src.commands.add_source_data.readers import get_reader
 from src.commands.add_source_data.rules import Rules
 from src.commands.add_source_data.service import AddDataService
 from src.commands.base.command import Command
