@@ -27,7 +27,7 @@ src/cli.py add-data data/source_dummy_01012018_to_31122022.csv
 
 Rules to exclude data can be configured in the `configuration/rules.yml` file.
 ### Categorization
-Can be customized in the `configuration/equivalences.yml` file.
+Can be customized in the `configuration/categories.yml` file.
 For each category you can create lots of keywords or sentences to be detected.
 ```
 src/cli.py insert-categories

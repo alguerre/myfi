@@ -11,11 +11,11 @@ logger = get_logger(__name__)
 class InsertCategoriesCommand(Command):
     def __init__(self, service: InsertCategoriesService) -> None:
         self.service = service
-        self.equivalences = get_config(paths.config_equivalences)
+        self.categories = get_config(paths.config_categories)
         self.counter = Counter(initial=0)
 
     def execute(self) -> None:
-        for category, keywords in self.equivalences.items():
+        for category, keywords in self.categories.items():
             updates = self.service.update_category(category, keywords)
 
             logger.info(f"Category insertions {updates} for [{category}]")

@@ -11,7 +11,7 @@ class Paths:
     gui: Path = src / "gui" / "gui.py"
     config: Path = finances / "config"
     config_db: Path = config / "database.yml"
-    config_equivalences: Path = config / "equivalences.yml"
+    config_categories: Path = config / "categories.yml"
     config_rules: Path = config / "rules.yml"
 
 
